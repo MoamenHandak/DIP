@@ -116,11 +116,22 @@
     try { localStorage.setItem('dip-language', currentLanguage); } catch { /* language toggle still works without storage */ }
     document.documentElement.lang = currentLanguage;
     document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+    const bootstrapCss = document.querySelector('#bootstrapCss');
+    if (bootstrapCss) {
+      const arabicLayout = currentLanguage === 'ar';
+      bootstrapCss.href = arabicLayout ? bootstrapCss.dataset.rtlHref : bootstrapCss.dataset.ltrHref;
+      bootstrapCss.integrity = arabicLayout
+        ? 'sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW'
+        : 'sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB';
+    }
     walkText(document.body, currentLanguage);
     localizeAttributes(currentLanguage);
     document.querySelectorAll('.language-toggle').forEach(button => {
       button.setAttribute('aria-label', currentLanguage === 'ar' ? 'Switch language to English' : 'بدّل اللغة إلى العربية');
       button.setAttribute('aria-pressed', String(currentLanguage === 'en'));
+    });
+    document.querySelectorAll('.navbar-toggler').forEach(button => {
+      button.setAttribute('aria-label', currentLanguage === 'ar' ? 'فتح أو إغلاق قائمة التنقل' : 'Toggle navigation');
     });
     const path = location.pathname.toLowerCase();
     const file = path.includes('/chapter-2/') ? 'chapter2.html' : path.includes('/chapters-3-4/') ? 'chapter3.html' : path.includes('/chapter-1/') ? 'chapter1.html' : path.includes('/exams/') ? 'quiz.html' : 'home.html';

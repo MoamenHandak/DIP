@@ -2,6 +2,8 @@
 
 A bilingual (Arabic/English) study website for Digital Image Processing, with chapter summaries and interactive practice exams.
 
+The responsive navigation and course landing-page grid use Bootstrap 5.3.8, including Bootstrap's RTL stylesheet for Arabic and its LTR stylesheet for English.
+
 ## Run locally
 
 Open `index.html` in a browser.
