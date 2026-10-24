@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="ملخص الفصل الأول في معالجة الصور الرقمية: المفاهيم والمجالات والمراحل والتطبيقات.">
+  <title>الفصل الأول | معالجة الصور الرقمية</title>
+  <link rel="stylesheet" href="../../assets/css/main.css"><link rel="stylesheet" href="../../assets/css/minimal.css">
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="العودة إلى أعلى الصفحة"><span class="brand-mark">◉</span><span>DIP<span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="التنقل الرئيسي">
+      <a href="../../index.html">الرئيسية</a><a class="active" href="#overview">نظرة عامة</a><a href="#concepts">المفاهيم</a><a href="#pipeline">المراحل</a><a href="#system">النظام والتطبيقات</a><a href="../../exams/">الاختبارات</a>
+    </nav>
+    <a class="top-action" href="../chapter-2/">الفصل الثاني <span>↙</span></a><button class="language-toggle" type="button" aria-label="Switch language"><span>AR</span><i></i><b>EN</b></button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> مقرر معالجة الصور الرقمية <span class="eyebrow-en">DIGITAL IMAGE PROCESSING</span></div>
+        <h1>من الصورة<br>إلى <span>المعنى.</span></h1>
+        <p class="hero-lede">رحلة الصورة الرقمية من التقاط الضوء إلى استخراج المعلومة. تعرّف على المفاهيم الأساسية، مراحل المعالجة، وكيف تفهم الأنظمة ما تراه.</p>
+        <div class="hero-meta"><span class="chapter-number">01</span><span class="meta-rule"></span><span>الفصل الأول</span><span class="meta-sep">/</span><span>مقدمة ومفاهيم أساسية</span></div>
+        <a class="primary-button" href="#overview">اكتشف محتوى الفصل <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="رسم توضيحي لصورة رقمية وبكسلاتها">
+        <div class="art-label label-top">FIG. 01 <span>PIXEL MATRIX</span></div>
+        <div class="scan-frame"><div class="scan-image"><div class="sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div><div class="scan-grid"></div><div class="scan-crosshair">+</div></div></div>
+        <div class="art-axis axis-x"><span>0</span><span>128</span><span>255</span></div>
+        <div class="art-axis axis-y"><span>0</span><span>128</span><span>255</span></div>
+        <div class="art-label label-bottom"><span class="signal-dot"></span> f(x, y) <span>256 × 256</span></div>
+        <div class="float-note">كل نقطة تحمل<br><b>معلومة.</b></div>
+      </div>
+      <div class="hero-index">01 <span>— 09</span></div>
+    </section>
+
+    <section class="course-strip" aria-label="معلومات سريعة عن المقرر">
+      <div class="strip-intro"><span class="strip-kicker">خريطة المقرر</span><span>ما الذي ستتعلمه؟</span></div>
+      <div class="strip-topic"><span class="topic-index">01</span><span>أساسيات الصور<br>وتحويلاتها</span></div>
+      <div class="strip-topic"><span class="topic-index">02</span><span>تحسين الصور<br>واستعادتها</span></div>
+      <div class="strip-topic"><span class="topic-index">03</span><span>التجزئة<br>والمورفولوجيا</span></div>
+      <div class="strip-topic"><span class="topic-index">04</span><span>تطبيقات<br>الذكاء الاصطناعي</span></div>
+      <div class="strip-total"><span>مجموع الدرجات</span><b>100</b></div>
+    </section>
+
+    <section class="section overview-section" id="overview">
+      <div class="section-heading"><div><span class="section-kicker">01 / المقرر</span><h2>ابدأ من <span>الصورة.</span></h2></div><p>قبل أن نحلل الصور أو نحسّنها، نحتاج إلى فهم طبيعتها: كيف تُمثّل؟ وما الذي يمكن أن نفعله بها؟</p></div>
+      <div class="overview-grid">
+        <article class="definition-card">
+          <div class="card-topline"><span class="card-label">تعريف أساسي</span><span class="card-icon">↗</span></div>
+          <h3>ما هي الصورة الرقمية؟</h3>
+          <p>هي دالة ثنائية الأبعاد <span class="math">f(x, y)</span>؛ يمثل <span class="term">x وy</span> الإحداثيات المكانية، وتمثل قيمة الدالة عند كل نقطة شدة الضوء أو مستوى الرمادي.</p>
+          <div class="formula-box"><span class="formula">f(x, y) = intensity</span><span class="formula-note">الموقع المكاني ← قيمة الشدة</span></div>
+        </article>
+        <article class="definition-card definition-dark">
+          <div class="card-topline"><span class="card-label">الفكرة المحورية</span><span class="card-icon">⌁</span></div>
+          <h3>ما هي معالجة الصور؟</h3>
+          <p>استخدام الحاسوب الرقمي لمعالجة الصور بهدف تحسين المعلومات البصرية للبشر، أو إعدادها كي تحللها الأنظمة آلياً.</p>
+          <div class="purpose-pair"><div><span class="purpose-symbol">◉</span><span>للعين البشرية</span></div><span class="pair-plus">+</span><div><span class="purpose-symbol">⌘</span><span>للتحليل الآلي</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section grading-section" id="grading">
+      <div class="section-heading compact"><div><span class="section-kicker">02 / التقييم</span><h2>توزيع <span>الدرجات.</span></h2></div><p>اعرف أين تتركز درجات المقرر وخطّط لمراجعتك.</p></div>
+      <div class="grade-layout">
+        <div class="grade-total"><span class="grade-total-label">المجموع الكلي</span><strong>100</strong><span class="grade-total-caption">درجة</span><div class="grade-orbit orbit-one"></div><div class="grade-orbit orbit-two"></div></div>
+        <div class="grade-list">
+          <div class="grade-row"><span class="grade-name"><i class="grade-dot final-dot"></i>النهائي</span><div class="grade-track"><span style="width:60%"></span></div><b>60<small>درجة</small></b></div>
+          <div class="grade-row"><span class="grade-name"><i class="grade-dot mid-dot"></i>الامتحان النصفي</span><div class="grade-track"><span style="width:20%"></span></div><b>20<small>درجة</small></b></div>
+          <div class="grade-row"><span class="grade-name"><i class="grade-dot activity-dot"></i>الأنشطة والعملي</span><div class="grade-track"><span style="width:20%"></span></div><b>20<small>درجة</small></b></div>
+          <div class="activity-detail"><span>تشمل:</span> اختبار المعمل أو المشروع <i>·</i> التمارين <i>·</i> الاختبارات القصيرة</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section concepts-section" id="concepts">
+      <div class="section-heading"><div><span class="section-kicker">03 / المفاهيم</span><h2>أين تقع معالجة الصور؟</h2></div><p>تتداخل عدة مجالات في التعامل مع الصور. الفرق الأساسي بينها هو ما يدخل إلى النظام وما ينتج عنه.</p></div>
+      <div class="field-flow" role="list" aria-label="المجالات المرتبطة بالصور">
+        <article class="field-card" role="listitem"><span class="field-number">01</span><div class="field-glyph glyph-graphics">▧</div><h3>رسوم الحاسوب</h3><span class="field-en">COMPUTER GRAPHICS</span><div class="field-direction"><span>وصف أو كود</span><i>→</i><b>صورة مصنّعة</b></div></article>
+        <article class="field-card featured-field" role="listitem"><span class="field-number">02</span><div class="field-glyph glyph-processing">◫</div><h3>معالجة الصور</h3><span class="field-en">IMAGE PROCESSING</span><div class="field-direction"><span>صورة</span><i>→</i><b>صورة محسّنة</b></div></article>
+        <article class="field-card" role="listitem"><span class="field-number">03</span><div class="field-glyph glyph-video">▤</div><h3>معالجة الفيديو</h3><span class="field-en">VIDEO PROCESSING</span><div class="field-direction"><span>أطر متتابعة</span><i>→</i><b>فيديو معالَج</b></div></article>
+        <article class="field-card" role="listitem"><span class="field-number">04</span><div class="field-glyph glyph-vision">⌕</div><h3>الرؤية الحاسوبية</h3><span class="field-en">COMPUTER VISION</span><div class="field-direction"><span>صورة</span><i>→</i><b>فهم المشهد</b></div></article>
+        <article class="field-card" role="listitem"><span class="field-number">05</span><div class="field-glyph glyph-pattern">⠿</div><h3>التعرف على الأنماط</h3><span class="field-en">PATTERN RECOGNITION</span><div class="field-direction"><span>بيانات</span><i>→</i><b>نمط معروف</b></div></article>
+      </div>
+      <div class="levels-panel"><div class="levels-title"><span class="section-kicker">طبقات الفهم</span><h3>من البكسل<br>إلى القرار.</h3><p>كلما ارتفع المستوى، ابتعدنا عن تعديل الصورة واقتربنا من تفسيرها.</p></div><div class="level-stack">
+        <article class="level-row"><span class="level-code">L1</span><div class="level-main"><h4>المستوى المنخفض <span>LOW-LEVEL</span></h4><p>صورة تدخل، وصورة تخرج — إزالة ضوضاء أو زيادة حدة.</p></div><div class="level-visual low-visual"><span>░</span><i>→</i><b>▤</b></div></article>
+        <article class="level-row"><span class="level-code">L2</span><div class="level-main"><h4>المستوى المتوسط <span>MID-LEVEL</span></h4><p>صورة تدخل، وسمات أو مناطق محددة تخرج — مثل التجزئة.</p></div><div class="level-visual mid-visual"><span>▤</span><i>→</i><b>◉</b></div></article>
+        <article class="level-row"><span class="level-code">L3</span><div class="level-main"><h4>المستوى العالي <span>HIGH-LEVEL</span></h4><p>سمات تدخل، وفهم إدراكي أو قرار يخرج — كالقيادة الذاتية.</p></div><div class="level-visual high-visual"><span>◉</span><i>→</i><b>⌖</b></div></article>
+      </div></div>
+    </section>
+
+    <section class="section reasons-section">
+      <div class="reasons-copy"><span class="section-kicker">04 / لماذا نعالج الصور؟</span><h2>لأن الصورة<br>تحمل <span>أكثر مما نرى.</span></h2><p>المعالجة تجعل الصورة أوضح، أسهل في الاستخدام، وأغنى بالمعلومات التي يمكن الاستفادة منها.</p></div>
+      <div class="reason-grid"><article><span class="reason-index">01</span><span class="reason-icon">⇄</span><h3>تخزين ونقل</h3><p>تقليل الحجم وتسهيل مشاركة الصور.</p></article><article><span class="reason-index">02</span><span class="reason-icon">✳</span><h3>تحسين واستعادة</h3><p>معالجة التلف والضبابية والضوضاء.</p></article><article><span class="reason-index">03</span><span class="reason-icon">⌕</span><h3>استخراج المعلومات</h3><p>كشف السمات والتفاصيل المهمة.</p></article><article><span class="reason-index">04</span><span class="reason-icon">▣</span><h3>عرض وطباعة</h3><p>تهيئة الصور لشاشات ووسائط مختلفة.</p></article></div>
+    </section>
+
+    <section class="section modalities-section" id="modalities">
+      <div class="section-heading"><div><span class="section-kicker">05 / وسائل التصوير</span><h2>نوافذ مختلفة على العالم.</h2></div><p>تلتقط أنظمة التصوير معلومات من نطاقات مختلفة من الطيف، فتُظهر لنا ما لا تراه العين وحدها.</p></div>
+      <div class="modality-grid">
+        <article class="modality-card gamma"><div class="modality-top"><span>01 — 03</span><span class="wave wave-gamma">〰</span></div><div class="modality-copy"><span class="modality-en">GAMMA-RAY</span><h3>أشعة جاما</h3><p>تصوير طبي يعتمد على مواد مشعة لتتبّع وظائف أعضاء مثل القلب والمخ والعظام.</p><span class="use-label">الطب النووي · تشخيص الوظائف</span></div><div class="wave-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="modality-card xray"><div class="modality-top"><span>02 — 03</span><span class="wave wave-xray">⌁</span></div><div class="modality-copy"><span class="modality-en">X-RAY</span><h3>الأشعة السينية</h3><p>تكشف البنى الداخلية للجسم، وتُستخدم كثيراً في تصوير العظام والصدر.</p><span class="use-label">التصوير الطبي · فحص البنى</span></div><div class="bone-visual"><span>✳</span><i></i><i></i><i></i><i></i><b></b></div></article>
+        <article class="modality-card uv"><div class="modality-top"><span>03 — 03</span><span class="wave wave-uv">⌇</span></div><div class="modality-copy"><span class="modality-en">ULTRAVIOLET</span><h3>الأشعة فوق البنفسجية</h3><p>تُظهر تفاصيل لا تظهر بالضوء المرئي، مثل بعض خصائص الجلد والأجرام الفلكية.</p><span class="use-label">فحص الجلد · علم الفلك</span></div><div class="uv-rings"><i></i><i></i><i></i><i></i></div></article>
+      </div>
+    </section>
+
+    <section class="pipeline-section" id="pipeline">
+      <div class="pipeline-heading"><div><span class="section-kicker">06 / خريطة المعالجة</span><h2>من الالتقاط<br>إلى <span>التعرّف.</span></h2></div><p>مراحل مترابطة تحوّل الإشارة الخام إلى وصف يمكن فهمه والاستفادة منه.</p><div class="pipeline-count">09 <span>مراحل أساسية</span></div></div>
+      <div class="pipeline-grid">
+        <article class="stage-card stage-start"><span class="stage-number">01</span><div class="stage-icon">◉</div><h3>التقاط الصورة</h3><span>IMAGE ACQUISITION</span><p>الحصول على الصورة وتحويلها إلى بيانات رقمية.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">02</span><div class="stage-icon">✳</div><h3>تحسين الصورة</h3><span>ENHANCEMENT</span><p>إبراز التفاصيل لتصبح الصورة أوضح للغرض المطلوب.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">03</span><div class="stage-icon">⌁</div><h3>استعادة الصورة</h3><span>RESTORATION</span><p>إزالة أثر التشويش أو التلف اعتماداً على نماذج.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">04</span><div class="stage-icon">▦</div><h3>المعالجة المورفولوجية</h3><span>MORPHOLOGY</span><p>تحليل شكل البنى في الصورة ومعالجتها.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card stage-accent"><span class="stage-number">05</span><div class="stage-icon">◧</div><h3>تجزئة الصور</h3><span>SEGMENTATION</span><p>تقسيم الصورة إلى مناطق أو أجسام ذات معنى.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">06</span><div class="stage-icon">⌗</div><h3>التمثيل والوصف</h3><span>REPRESENTATION</span><p>تحويل المناطق إلى تمثيل وسمات قابلة للقياس.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">07</span><div class="stage-icon">⌕</div><h3>التعرّف على الأجسام</h3><span>RECOGNITION</span><p>إسناد اسم أو فئة إلى الأجسام المكتشفة.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card"><span class="stage-number">08</span><div class="stage-icon">◒</div><h3>معالجة الصور الملونة</h3><span>COLOR PROCESSING</span><p>استخدام معلومات اللون وتحليلها في الصورة.</p><i class="stage-arrow">↙</i></article>
+        <article class="stage-card stage-end"><span class="stage-number">09</span><div class="stage-icon">▤</div><h3>ضغط الصور</h3><span>COMPRESSION</span><p>تمثيل الصورة بكفاءة لتوفير التخزين والنقل.</p><i class="stage-arrow">↙</i></article>
+      </div>
+      <div class="pipeline-footer"><span>INPUT</span><div class="pipeline-line"><i></i></div><span>INSIGHT</span><span class="pipeline-caption">تسلسل مفاهيمي — قد تتداخل المراحل بحسب التطبيق</span></div>
+    </section>
+
+    <section class="section system-section" id="system">
+      <div class="section-heading"><div><span class="section-kicker">07 / من النظرية إلى التطبيق</span><h2>منظومة ترى،<br><span>ثم تفهم.</span></h2></div><p>تجتمع أجهزة الالتقاط والمعالجة والتخزين والعرض لبناء نظام متكامل لمعالجة الصور.</p></div>
+      <div class="system-layout">
+        <div class="system-diagram"><div class="diagram-label">IMAGE PROCESSING SYSTEM <span>SCHEMATIC / 01</span></div><div class="system-node node-capture"><span>01</span><b>التقاط</b><small>CAMERA / SENSOR</small></div><div class="system-node node-process"><span>02</span><b>معالجة</b><small>CPU / DSP / FPGA</small></div><div class="system-node node-store"><span>03</span><b>تخزين واتصال</b><small>MEMORY / NETWORK</small></div><div class="system-node node-output"><span>04</span><b>عرض ومخرجات</b><small>DISPLAY / PRINT</small></div><div class="connector connector-a"></div><div class="connector connector-b"></div><div class="connector connector-c"></div><div class="diagram-core">f(x,y)<span>PIXEL → INSIGHT</span></div></div>
+        <div class="system-details"><article><span class="detail-index">A</span><div><h3>أجهزة الالتقاط</h3><p>كاميرات، عدسات، مرشحات ضوئية، حساسات CCD ومستشعرات الإضاءة.</p></div></article><article><span class="detail-index">B</span><div><h3>أنظمة المعالجة</h3><p>حواسيب تقليدية أو أنظمة مدمجة تستخدم DSP أو FPGA أو شريحة SoC.</p></div></article><article><span class="detail-index">C</span><div><h3>التخزين والعرض</h3><p>وسائط تخزين واتصال، وشاشات وأجهزة طباعة لإخراج النتائج.</p></div></article></div>
+      </div>
+      <div class="applications"><div class="applications-title"><span class="section-kicker">تطبيقات في العالم الحقيقي</span><h3>أين نستخدمها؟</h3></div><div class="application-tags"><span><i>✳</i> ترميم الصور وتلوينها</span><span><i>⌕</i> كشف الوجوه وتتبعها</span><span><i>◌</i> دمج الوجوه</span><span><i>◉</i> بصمات الأصابع</span><span><i>◎</i> التعرّف على قزحية العين</span><span><i>⌘</i> الذكاء الاصطناعي</span></div></div>
+    </section>
+
+    <section class="recap-section"><div class="recap-mark">✳</div><span class="section-kicker">خلاصة الفصل</span><h2>الصورة بيانات.<br>والمعالجة <span>طريقة لفهمها.</span></h2><p>من قيمة البكسل، إلى تحسين الصورة، إلى التعرّف على ما بداخلها — هذه هي الفكرة التي تربط موضوعات الفصل.</p><a href="../chapter-2/" class="back-top">تابع إلى الفصل الثاني <span>←</span></a><a href="../../exams/" class="back-top">جرّب الاختبارات <span>↗</span></a><div class="recap-coordinate">29°58′N — 31°08′E<br>DIGITAL IMAGE PROCESSING / CH 01</div></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">◉</span><span>DIP<span class="brand-dot">.</span></span></a><span>معالجة الصور الرقمية <i>·</i> الفصل الأول</span><span class="footer-code">LEARN / ANALYZE / UNDERSTAND</span></footer>
+  <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/chapter1.js"></script>
+</body>
+</html>
