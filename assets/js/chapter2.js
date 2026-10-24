@@ -71,7 +71,7 @@ function refreshDistances() {
   route.className = 'distance-route';
   const x1 = px * 100 / 9, x2 = qx * 100 / 9;
   const y1 = (9 - py) * 100 / 9, y2 = (9 - qy) * 100 / 9;
-  route.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#879b70" stroke-width="0.8" stroke-dasharray="2 2"/><polyline points="${x1},${y1} ${x2},${y1} ${x2},${y2}" fill="none" stroke="#b0c28f" stroke-width="0.8"/></svg>`;
+  route.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2563eb" stroke-width="0.8" stroke-dasharray="2 2"/><polyline points="${x1},${y1} ${x2},${y1} ${x2},${y2}" fill="none" stroke="#93c5fd" stroke-width="0.8"/></svg>`;
   distanceGrid.append(route);
 }
 coordinateInputs.forEach(input => input.addEventListener('input', refreshDistances));
